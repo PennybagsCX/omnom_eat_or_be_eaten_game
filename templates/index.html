@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>$OMNOM - Crypto Eating Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+    <div id="gameContainer" class="game-container">
+        <h1>$OMNOM</h1>
+        <p class="tagline">... EAT OR BE EATEN</p>
+        
+        <div class="username-modal" id="usernameModal">
+            <div class="modal-content">
+                <h2>ENTER USERNAME</h2>
+                <div class="info-message username-info">
+                    ⚠️ Choose carefully! Your username will be permanently linked to your wallet address and cannot be changed after your first game.
+                </div>
+                <input type="text" id="username" placeholder="Your username">
+                <button id="generateName">🎲 Random Name</button>
+                <div class="info-message wallet-info">
+                    🦊 Connect your wallet to track your scores on the leaderboard. Your game performance may qualify you for future $OMNOM token airdrops!
+                </div>
+                <button id="connectWallet" class="wallet-button">🦊 Connect Wallet</button>
+                <button id="disconnectWallet" class="wallet-button disconnect" style="display: none;">🔌 Disconnect Wallet</button>
+                <div id="walletStatus" class="wallet-status"></div>
+                <button id="startWithName">Start Game</button>
+            </div>
+        </div>
+
+        <div class="leaderboard-modal" id="leaderboardModal">
+            <div class="modal-content">
+                <h2>TOP PLAYERS</h2>
+                <div class="leaderboard-list" id="leaderboardList">
+                    <!-- Leaderboard entries will be inserted here -->
+                </div>
+                <button class="close-leaderboard">Close</button>
+            </div>
+        </div>
+
+        <div class="game-header">
+            <button class="view-leaderboard">📊 Leaderboard</button>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="gameCanvas"></canvas>
+        </div>
+
+        <div class="stats-container">
+            <div class="stats-title">$OMNOM POINTS GENERATED</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">LAST HOUR</div>
+                    <div class="stat-value" id="hourStats">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">LAST 24H</div>
+                    <div class="stat-value" id="dayStats">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">LAST 72H</div>
+                    <div class="stat-value" id="threeStats">0</div>
+                </div>
+            </div>
+            <div class="stats-grid total-points">
+                <div class="stat-item full-width">
+                    <div class="stat-label">TOTAL $OMNOM POINTS</div>
+                    <div class="stat-value" id="totalPoints">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-over">
+            <div class="game-over-content">
+                <h2>GAME OVER</h2>
+                <p>Final Score: <span class="final-score">0</span></p>
+                <div class="high-score-message"></div>
+                <button class="restart-button">PLAY AGAIN</button>
+                <button class="view-leaderboard">VIEW LEADERBOARD</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='wallet.js') }}"></script>
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>

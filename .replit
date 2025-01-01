@@ -1,0 +1,10 @@
+language = "bash"
+run = "bash setup.sh"
+entrypoint = "app.py"
+
+[nix]
+channel = "stable-22_11"
+
+[deployment]
+run = ["bash", "setup.sh"]
+deploymentTarget = "cloudrun"
